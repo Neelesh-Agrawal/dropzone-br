@@ -1,0 +1,7 @@
+node_modules
+dist
+.env
+.env.local
+.vercel
+# Trailer renders are hundreds of MB (GitHub rejects files over 100 MB).
+recordings

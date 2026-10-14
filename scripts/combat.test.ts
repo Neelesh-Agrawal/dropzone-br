@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import { playerHit } from '../src/shared/combat';
+import { getTerrainHeight } from '../src/shared/terrain';
+const origin={x:0,y:1.7,z:0}, dir={x:0,y:0,z:-1};
+assert.equal(playerHit(origin,dir,{x:0,y:1.7,z:-50})?.headshot,true);
+assert.equal(playerHit(origin,dir,{x:0,y:2.25,z:-50})?.headshot,false);
+assert.equal(playerHit(origin,dir,{x:2,y:1.7,z:-50}),null,'A near miss must not hit from an oversized aim cone');
+assert.equal(playerHit(origin,dir,{x:0,y:1.7,z:50}),null,'Cannot hit behind shooter');
+assert.ok(Number.isFinite(getTerrainHeight(-1650,-1250)));
+console.log('PASS: headshots, body shots, near misses, targets behind shooter, shared terrain');
